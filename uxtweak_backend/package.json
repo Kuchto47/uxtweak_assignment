@@ -22,7 +22,8 @@
     "migration:generate": "npm run typeorm migration:generate -- -d src/db/data-source.ts",
     "migration:create": "npm run typeorm migration:create",
     "migration:run": "npm run typeorm migration:run -- -d src/db/data-source.ts",
-    "migration:revert": "npm run typeorm migration:revert -- -d src/db/data-source.ts"
+    "migration:revert": "npm run typeorm migration:revert -- -d src/db/data-source.ts",
+    "trpc:generate:types": "npx nestjs-trpc generate --entrypoint ./src/modules --output ./src/trpc/@generated/types.ts"
   },
   "dependencies": {
     "@nestjs/common": "11.1.28",

@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { ChatroomEntity } from './chatroom.entity';
+import { Chatroom } from './chatroom.entity';
 import { BaseSerialEntity } from '../../../../db/base-serial-entity';
 
 @Entity('message')
-export class MessageEntity extends BaseSerialEntity {
+export class ChatMessage extends BaseSerialEntity {
   @Column({ name: 'chatroom_fk_id' })
   chatroomFkId: string;
 
@@ -13,9 +13,9 @@ export class MessageEntity extends BaseSerialEntity {
   @Column()
   body: string;
 
-  @ManyToOne(() => ChatroomEntity, (chatroom) => chatroom.messages, {
+  @ManyToOne(() => Chatroom, (chatroom) => chatroom.messages, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'chatroom_fk_id' })
-  chatroom: ChatroomEntity;
+  chatroom: Chatroom;
 }

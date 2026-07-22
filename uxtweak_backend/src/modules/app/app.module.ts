@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../../db/data-source';
 import { ChatModule } from '../chat/chat.module';
+import { TrpcModule } from '../trpc/trpc.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ChatModule } from '../chat/chat.module';
       autoLoadEntities: true,
     }),
     ChatModule,
+    TrpcModule,
   ],
   controllers: [],
   providers: [],

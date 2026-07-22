@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { ChatMessage } from './chatMessage.entity';
-import { BaseUuidEntity } from '../../../../db/base-uuid-entity';
+import { BaseUuidEntityEntity } from '../../../../db/base-uuid-entity.entity';
 
 @Entity('chatroom')
-export class Chatroom extends BaseUuidEntity {
+export class Chatroom extends BaseUuidEntityEntity {
   @Column()
   name: string;
 

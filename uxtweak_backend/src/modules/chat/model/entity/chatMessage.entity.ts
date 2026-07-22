@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Chatroom } from './chatroom.entity';
-import { BaseSerialEntity } from '../../../../db/base-serial-entity';
+import { BaseSerialEntityEntity } from '../../../../db/base-serial-entity.entity';
 
 @Entity('message')
-export class ChatMessage extends BaseSerialEntity {
+export class ChatMessage extends BaseSerialEntityEntity {
   @Column({ name: 'chatroom_fk_id' })
   chatroomFkId: string;
 

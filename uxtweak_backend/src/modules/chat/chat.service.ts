@@ -18,4 +18,11 @@ export class ChatService {
     const chatRoomsEntities = await this.chatroomRepository.find();
     return chatRoomsEntities.map((cre) => ChatRoomDto.fromEntity(cre));
   }
+
+  async getAllMessagesForRoom(roomId: string): Promise<ChatMessage[]> {
+    return this.messageRepository
+      .createQueryBuilder('messages')
+      .where('messages.chatroomFkId = :roomId', { roomId })
+      .getMany();
+  }
 }

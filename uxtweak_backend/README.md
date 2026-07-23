@@ -27,7 +27,8 @@ docker compose up
 - **PostgreSQL DB:** `localhost:15432`
 
 ### Database Migrations
-Migrations are managed via TypeORM. At the moment, they are run manually by the developer:
+Migrations are managed via TypeORM and run automatically on `docker compose up`.
+To run them manually:
 ```bash
 npm run migration:run
 ```

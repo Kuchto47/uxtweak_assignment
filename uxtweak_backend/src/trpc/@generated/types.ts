@@ -14,12 +14,21 @@ import { z } from "zod";
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
 import { chatroomDtoSchema } from "../../modules/chat/model/dto/chatroom.dto.schema.js";
+import { getHistoricalMessagesRequestDtoSchema, chatMessageDtoSchema, sendChatMessageRequestDtoSchema, sendChatMessageResponseDtoSchema } from "../../modules/chat/model/dto/chatMessage.dto.schema.js";
 
 const appRouter = t.router({
   chatRouter: t.router({
     getChatRooms: publicProcedure
       .output(z.array(chatroomDtoSchema))
-      .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
+      .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    getAllMessagesForRoom: publicProcedure
+      .input(getHistoricalMessagesRequestDtoSchema)
+      .output(z.array(chatMessageDtoSchema))
+      .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    sendMessage: publicProcedure
+      .input(sendChatMessageRequestDtoSchema)
+      .output(sendChatMessageResponseDtoSchema)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
     })
 });
 

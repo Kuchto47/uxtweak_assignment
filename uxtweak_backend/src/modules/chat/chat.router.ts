@@ -57,6 +57,10 @@ export class ChatRouter {
   @Subscription({
     input: getMessagesForRoomRequestDtoSchema,
     output: chatMessageDtoSchema,
+    meta: {
+      description:
+        'DISCLAIMER: Subscription endpoints do not work in trpc-ui panel!',
+    },
   })
   async *onNewMessageSent(
     @Input() param: GetMessagesForRoomRequestDtoType,

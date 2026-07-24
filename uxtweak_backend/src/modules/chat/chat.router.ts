@@ -1,4 +1,4 @@
-import { Query, Router, Input } from 'nestjs-trpc';
+import { Query, Router, Input, Mutation } from 'nestjs-trpc';
 import { ChatService } from './chat.service';
 import { z } from 'zod';
 import { chatroomDtoSchema } from './model/dto/chatroom.dto.schema';
@@ -8,7 +8,11 @@ import {
   ChatMessageDtoType,
   getHistoricalMessagesRequestDtoSchema,
   type GetHistoricalMessagesRequestDtoType,
+  sendChatMessageRequestDtoSchema,
+  sendChatMessageResponseDtoSchema,
+  SendChatMessageResponseDtoType,
 } from './model/dto/chatMessage.dto.schema';
+import { SendChatMessageRequestDto } from './model/dto/sendChatMessageRequest.dto';
 
 @Router()
 export class ChatRouter {
@@ -27,5 +31,15 @@ export class ChatRouter {
     @Input() param: GetHistoricalMessagesRequestDtoType,
   ): Promise<ChatMessageDtoType[]> {
     return this.chatService.getAllMessagesForRoom(param.chatroomId);
+  }
+
+  @Mutation({
+    input: sendChatMessageRequestDtoSchema,
+    output: sendChatMessageResponseDtoSchema,
+  })
+  sendMessage(
+    @Input() param: SendChatMessageRequestDto,
+  ): Promise<SendChatMessageResponseDtoType> {
+    return this.chatService.sendMessage(param);
   }
 }

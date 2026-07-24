@@ -1,14 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Chatroom } from './model/entity/chatroom.entity';
 import { Repository } from 'typeorm';
 import { ChatMessage } from './model/entity/chatMessage.entity';
 import { ChatRoomDto } from './model/dto/chatroom.dto';
-import { ChatMessageDtoType } from './model/dto/chatMessage.dto.schema';
+import {
+  ChatMessageDtoType,
+  SendChatMessageResponseDtoType,
+} from './model/dto/chatMessage.dto.schema';
 import { ChatMessageDto } from './model/dto/chatMessage.dto';
+import { SendChatMessageRequestDto } from './model/dto/sendChatMessageRequest.dto';
 
 @Injectable()
 export class ChatService {
+  private readonly logger: Logger = new Logger(ChatService.name);
+
   constructor(
     @InjectRepository(Chatroom)
     private readonly chatroomRepository: Repository<Chatroom>,
@@ -27,5 +33,20 @@ export class ChatService {
       .where('messages.chatroomFkId = :roomId', { roomId })
       .getMany();
     return messages.map((message) => ChatMessageDto.fromEntity(message));
+  }
+
+  async sendMessage(
+    msg: SendChatMessageRequestDto,
+  ): Promise<SendChatMessageResponseDtoType> {
+    try {
+      const _savedMsg = await this.messageRepository.save(
+        ChatMessage.fromSendMessageDto(msg),
+      );
+      // TODO notify stream
+      return { success: true };
+    } catch (e) {
+      this.logger.error(e);
+      return { success: false };
+    }
   }
 }

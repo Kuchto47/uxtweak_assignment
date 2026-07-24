@@ -3,7 +3,7 @@ import { z } from 'zod';
 const CHATROOM_ID = z.string().uuid();
 const SENDER_NAME = z.string().max(25);
 
-export const getHistoricalMessagesRequestDtoSchema = z.object({
+export const getMessagesForRoomRequestDtoSchema = z.object({
   chatroomId: CHATROOM_ID,
 });
 
@@ -24,8 +24,8 @@ export const sendChatMessageResponseDtoSchema = z.object({
   success: z.boolean(),
 });
 
-export type GetHistoricalMessagesRequestDtoType = z.infer<
-  typeof getHistoricalMessagesRequestDtoSchema
+export type GetMessagesForRoomRequestDtoType = z.infer<
+  typeof getMessagesForRoomRequestDtoSchema
 >;
 
 export type ChatMessageDtoType = z.infer<typeof chatMessageDtoSchema>;

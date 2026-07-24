@@ -14,7 +14,7 @@ import { z } from "zod";
 const t = initTRPC.create();
 const publicProcedure = t.procedure;
 import { chatroomDtoSchema } from "../../modules/chat/model/dto/chatroom.dto.schema.js";
-import { getHistoricalMessagesRequestDtoSchema, chatMessageDtoSchema, sendChatMessageRequestDtoSchema, sendChatMessageResponseDtoSchema } from "../../modules/chat/model/dto/chatMessage.dto.schema.js";
+import { getMessagesForRoomRequestDtoSchema, chatMessageDtoSchema, sendChatMessageRequestDtoSchema, sendChatMessageResponseDtoSchema } from "../../modules/chat/model/dto/chatMessage.dto.schema.js";
 
 const appRouter = t.router({
   chatRouter: t.router({
@@ -22,7 +22,7 @@ const appRouter = t.router({
       .output(z.array(chatroomDtoSchema))
       .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     getAllMessagesForRoom: publicProcedure
-      .input(getHistoricalMessagesRequestDtoSchema)
+      .input(getMessagesForRoomRequestDtoSchema)
       .output(z.array(chatMessageDtoSchema))
       .query(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     sendMessage: publicProcedure

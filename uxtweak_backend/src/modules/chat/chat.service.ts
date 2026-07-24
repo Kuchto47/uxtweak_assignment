@@ -10,6 +10,7 @@ import {
 } from './model/dto/chatMessage.dto.schema';
 import { ChatMessageDto } from './model/dto/chatMessage.dto';
 import { SendChatMessageRequestDto } from './model/dto/sendChatMessageRequest.dto';
+import { ChatMessageEventingService } from './chatMessageEventing.service';
 
 @Injectable()
 export class ChatService {
@@ -20,6 +21,7 @@ export class ChatService {
     private readonly chatroomRepository: Repository<Chatroom>,
     @InjectRepository(ChatMessage)
     private readonly messageRepository: Repository<ChatMessage>,
+    private readonly chatMessageEventing: ChatMessageEventingService,
   ) {}
 
   async getChatRooms(): Promise<ChatRoomDto[]> {
@@ -39,10 +41,13 @@ export class ChatService {
     msg: SendChatMessageRequestDto,
   ): Promise<SendChatMessageResponseDtoType> {
     try {
-      const _savedMsg = await this.messageRepository.save(
+      const savedMsg = await this.messageRepository.save(
         ChatMessage.fromSendMessageDto(msg),
       );
-      // TODO notify stream
+      this.chatMessageEventing.emit(
+        msg.chatroomId,
+        ChatMessageDto.fromEntity(savedMsg),
+      );
       return { success: true };
     } catch (e) {
       this.logger.error(e);

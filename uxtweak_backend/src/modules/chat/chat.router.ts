@@ -1,4 +1,11 @@
-import { Query, Router, Input, Mutation, Subscription } from 'nestjs-trpc';
+import {
+  Query,
+  Router,
+  Input,
+  Mutation,
+  Subscription,
+  Options,
+} from 'nestjs-trpc';
 import { ChatService } from './chat.service';
 import { z } from 'zod';
 import { chatroomDtoSchema } from './model/dto/chatroom.dto.schema';
@@ -14,7 +21,6 @@ import {
 } from './model/dto/chatMessage.dto.schema';
 import { SendChatMessageRequestDto } from './model/dto/sendChatMessageRequest.dto';
 import { ChatMessageEventingService } from './chatMessageEventing.service';
-import { Observable } from 'rxjs';
 
 @Router()
 export class ChatRouter {
@@ -52,9 +58,10 @@ export class ChatRouter {
     input: getMessagesForRoomRequestDtoSchema,
     output: chatMessageDtoSchema,
   })
-  onNewMessageSent(
+  async *onNewMessageSent(
     @Input() param: GetMessagesForRoomRequestDtoType,
-  ): Observable<ChatMessageDtoType> {
-    return this.chatMessageEventing.asObservable(param.chatroomId);
+    @Options() opts: { signal?: AbortSignal },
+  ) {
+    yield* this.chatMessageEventing.onNewMessage(param.chatroomId, opts.signal);
   }
 }

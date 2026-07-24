@@ -1,27 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { Subject } from 'rxjs';
 import { ChatMessageDtoType } from './model/dto/chatMessage.dto.schema';
+import { EventEmitter, on } from 'events';
+import { tracked } from '@trpc/server';
 
 type ChatRoomId = string;
+type ChatMessageEvents = {
+  [K in `newMessage:${ChatRoomId}`]: [ChatMessageDtoType];
+};
 
 @Injectable()
 export class ChatMessageEventingService {
-  private readonly subjectsMap: Map<ChatRoomId, Subject<ChatMessageDtoType>> =
-    new Map();
+  private readonly eventEmitter = new EventEmitter<ChatMessageEvents>();
 
   emit(chatroomId: ChatRoomId, message: ChatMessageDtoType) {
-    this.ensureSubjectExists(chatroomId);
-    return this.subjectsMap.get(chatroomId)!.next(message);
+    this.eventEmitter.emit(`newMessage:${chatroomId}`, message);
   }
 
-  asObservable(chatroomId: ChatRoomId) {
-    this.ensureSubjectExists(chatroomId);
-    return this.subjectsMap.get(chatroomId)!.asObservable();
-  }
+  async *onNewMessage(chatroomId: ChatRoomId, signal?: AbortSignal) {
+    const eventName = `newMessage:${chatroomId}` as const;
+    const iterable = on(this.eventEmitter, eventName, { signal });
 
-  private ensureSubjectExists(chatroomId: ChatRoomId) {
-    if (!this.subjectsMap.has(chatroomId)) {
-      this.subjectsMap.set(chatroomId, new Subject<ChatMessageDtoType>());
+    for await (const [message] of iterable) {
+      const typedMessage = message as ChatMessageDtoType;
+      yield tracked(String(typedMessage.id), typedMessage);
     }
   }
 }

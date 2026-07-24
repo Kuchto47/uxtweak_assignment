@@ -28,7 +28,11 @@ const appRouter = t.router({
     sendMessage: publicProcedure
       .input(sendChatMessageRequestDtoSchema)
       .output(sendChatMessageResponseDtoSchema)
-      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
+      .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
+    onNewMessageSent: publicProcedure
+      .input(getMessagesForRoomRequestDtoSchema)
+      .output(chatMessageDtoSchema)
+      .subscription(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
     })
 });
 

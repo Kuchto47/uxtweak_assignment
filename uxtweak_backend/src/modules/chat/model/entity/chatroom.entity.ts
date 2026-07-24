@@ -4,7 +4,7 @@ import { BaseUuidEntityEntity } from '../../../../db/base-uuid-entity.entity';
 
 @Entity('chatroom')
 export class Chatroom extends BaseUuidEntityEntity {
-  @Column()
+  @Column({ length: 40 })
   name: string;
 
   @OneToMany(() => ChatMessage, (message) => message.chatroom)

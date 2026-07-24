@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const chatroomDtoSchema = z.object({
-  name: z.string(),
+  name: z.string().max(40),
   id: z.string().uuid(),
 });
 

@@ -8,7 +8,7 @@ export class ChatMessage extends BaseSerialEntityEntity {
   @Column({ name: 'chatroom_fk_id' })
   chatroomFkId: string;
 
-  @Column()
+  @Column({ length: 25 })
   sender_name: string;
 
   @Column()

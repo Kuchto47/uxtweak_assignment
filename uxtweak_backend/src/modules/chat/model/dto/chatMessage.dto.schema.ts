@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 const CHATROOM_ID = z.string().uuid();
+const SENDER_NAME = z.string().max(25);
 
 export const getHistoricalMessagesRequestDtoSchema = z.object({
   chatroomId: CHATROOM_ID,
@@ -9,13 +10,13 @@ export const getHistoricalMessagesRequestDtoSchema = z.object({
 export const chatMessageDtoSchema = z.object({
   id: z.number(),
   timestamp: z.number(),
-  senderName: z.string(),
+  senderName: SENDER_NAME,
   message: z.string(),
 });
 
 export const sendChatMessageRequestDtoSchema = z.object({
   chatroomId: CHATROOM_ID,
-  senderName: z.string(),
+  senderName: SENDER_NAME,
   messageText: z.string(),
 });
 

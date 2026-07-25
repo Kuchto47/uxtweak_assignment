@@ -2,7 +2,12 @@
   <q-page class="q-pa-md flex flex-center">
     <div class="column" style="width: 100%; max-width: 400px">
       <div class="text-h6 q-mb-md">Your Nickname:</div>
-      <q-input outlined v-model="nickname" placeholder="Enter your nickname" style="margin-bottom: 100px" />
+      <q-input
+        outlined
+        v-model="nickname"
+        placeholder="Enter your nickname"
+        style="margin-bottom: 100px"
+      />
 
       <div class="text-h6 q-mb-sm">Chatrooms available:</div>
       <q-list bordered separator rounded>
@@ -22,9 +27,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
+
+const chatRoomsFromServer = useGetChatRooms();
+
+console.log(chatRoomsFromServer.data);
 
 const nickname = ref('');
-const chatrooms = ref([
-  { id: 1, name: 'UXTweak Chatroom' },
-]);
+const chatrooms = ref([{ id: 1, name: 'UXTweak Chatroom' }]);
 </script>

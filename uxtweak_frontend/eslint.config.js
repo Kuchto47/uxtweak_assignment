@@ -65,6 +65,14 @@ export default defineConfigWithVueTs(
     rules: {
       'prefer-promise-reject-errors': 'off',
       'vue/multi-word-component-names': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
 
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',

@@ -29,9 +29,7 @@
 import { ref } from 'vue';
 import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
 
-const chatRoomsFromServer = useGetChatRooms();
-
-console.log(chatRoomsFromServer.data);
+const _chatRoomsFromServer = useGetChatRooms();
 
 const nickname = ref('');
 const chatrooms = ref([{ id: 1, name: 'UXTweak Chatroom' }]);

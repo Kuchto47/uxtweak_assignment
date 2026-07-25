@@ -11,7 +11,7 @@ The application should:
 
 ## Frontend
 
-TODO
+All frontend details can be found in the [Frontend README](./uxtweak_frontend/README.md).
 
 ## Backend
 

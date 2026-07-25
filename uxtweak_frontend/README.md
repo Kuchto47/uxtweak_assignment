@@ -1,38 +1,35 @@
-# uxtweak-chat-app (uxtweak-frontend)
+# UXTweak Frontend
 
-## Install the dependencies
+## Tech Stack
+- **Framework:** [Quasar Framework](https://quasar.dev/) (Vue 3)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Communication:** TODO (tRPC / WebSockets)
 
+## Local Development
+
+### Prerequisites
+Install the dependencies using npm (or pnpm/yarn):
 ```bash
-pnpm install
-# or: yarn/npm/bun install
+npm install
 ```
 
-### Start the app in development mode (HMR, error reporting, etc.)
-
+### Development Server
+To start the application in development mode with Hot Module Replacement (HMR):
 ```bash
-quasar dev
+npm run dev
 ```
 
-### Format & Lint the files
+- **Frontend App:** `http://localhost:9000`
 
+### Build for Production
+To build the application for production:
 ```bash
-pnpm run lint
-# or: yarn/npm/bun run lint
+npm run build
 ```
 
-...or just check formatting & linting:
-
-```bash
-pnpm run lint:check
-# or: yarn/npm/bun run lint:check
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-file).
+## Additional Scripts
+- `npm run dev`: Start the application in development mode.
+- `npm run lint`: Run ESLint and Prettier to check and fix code style issues.
+- `npm run typecheck`: Run vue-tsc to check for TypeScript errors in Vue files.
+- `npm run build`: Build the application for production.

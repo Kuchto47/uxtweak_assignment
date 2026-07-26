@@ -5,10 +5,7 @@
 
       <q-space />
 
-      <div
-        v-if="activeChatroom"
-        class="absolute-center"
-      >
+      <div v-if="activeChatroom" class="absolute-center">
         {{ activeChatroom }}
       </div>
 
@@ -22,16 +19,16 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useQueryClient } from '@tanstack/vue-query';
-import { getChatRoomsQueryOptions } from '@/features/chatrooms/api/useGetChatRooms';
+import { useGetChatRooms } from '@/features/chatrooms/api/useGetChatRooms';
 
 const route = useRoute('/room/[chatroomId]');
-const queryClient = useQueryClient();
+const roomId = route.params.chatroomId;
+
+const { data: chatrooms } = useGetChatRooms({ desiredRoomId: roomId });
 
 const activeChatroom = computed(() => {
   const roomId = route.params.chatroomId;
   if (!roomId) return '';
-  const chatrooms = queryClient.getQueryData(getChatRoomsQueryOptions().queryKey);
-  return chatrooms?.find((room) => room.id === roomId)?.name ?? roomId;
+  return chatrooms.value?.find((room) => room.id === roomId)?.name ?? 'Unknown Room';
 });
 </script>

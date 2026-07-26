@@ -2,8 +2,8 @@ import { watchEffect } from 'vue';
 import { useQueryClient } from '@tanstack/vue-query';
 import { trpcClient } from '@/trpc/client';
 import { getMessagesQueryOptions } from '@/features/chatrooms/api/useGetRecentMessagesForRoom';
-import { assertIsChatMessageDto } from '@/features/chatrooms/utils/assertIsChatMessageDto';
 import { Notify } from 'quasar';
+import { chatMessageDtoSchema } from '@/features/chatrooms/model/chatMessageDtoSchema';
 
 export function useSubscribeToChatroom(chatroomId: string) {
   const queryClient = useQueryClient();
@@ -13,13 +13,13 @@ export function useSubscribeToChatroom(chatroomId: string) {
       { chatroomId },
       {
         onData(newData) {
-          assertIsChatMessageDto(newData);
+          const chatMessageDto = chatMessageDtoSchema.parse(newData);
           const queryKey = getMessagesQueryOptions(chatroomId).queryKey
           const currentData = queryClient.getQueryData(queryKey)
 
           queryClient.setQueryData(
             queryKey,
-            currentData === undefined ? [newData] : [...currentData, newData]
+            currentData === undefined ? [chatMessageDto] : [...currentData, chatMessageDto],
           );
         },
         onError(err) {

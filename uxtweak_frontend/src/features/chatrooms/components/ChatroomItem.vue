@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
-import { useNickname } from '@/features/chatrooms/useNickname';
+import { useGetChatRooms } from '@/features/chatrooms/api/useGetChatRooms';
+import { useNickname } from '@/features/chatrooms/utils/useNickname';
 
 const { data: chatrooms } = useGetChatRooms()
 const { nickname } = useNickname();

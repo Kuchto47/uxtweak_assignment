@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
-import { useNickname } from '@/features/chatrooms/useNickname';
+import { useGetChatRooms } from '@/features/chatrooms/api/useGetChatRooms';
+import { useNickname } from '@/features/chatrooms/utils/useNickname';
 import ChatroomsListSkeleton from '../../features/chatrooms/components/ChatroomsListSkeleton.vue';
 import ChatroomsLoadingError from '../../features/chatrooms/components/ChatroomsLoadingError.vue';
 import ChatroomItem from '../../features/chatrooms/components/ChatroomItem.vue';

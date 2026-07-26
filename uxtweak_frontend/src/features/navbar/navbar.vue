@@ -23,7 +23,7 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useQueryClient } from '@tanstack/vue-query';
-import { getChatRoomsQueryOptions } from '@/features/chatrooms/useGetChatRooms';
+import { getChatRoomsQueryOptions } from '@/features/chatrooms/api/useGetChatRooms';
 
 const route = useRoute('/room/[chatroomId]');
 const queryClient = useQueryClient();

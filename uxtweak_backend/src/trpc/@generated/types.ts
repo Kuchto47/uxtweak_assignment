@@ -15,6 +15,7 @@ const t = initTRPC.create();
 const publicProcedure = t.procedure;
 import { chatroomDtoSchema } from "../../modules/chat/model/dto/chatroom.dto.schema.js";
 import { getMessagesForRoomRequestDtoSchema, chatMessageDtoSchema, sendChatMessageRequestDtoSchema, sendChatMessageResponseDtoSchema } from "../../modules/chat/model/dto/chatMessage.dto.schema.js";
+import type { ChatRouter } from "../../modules/chat/chat.router.js";
 
 const appRouter = t.router({
   chatRouter: t.router({
@@ -31,8 +32,7 @@ const appRouter = t.router({
       .mutation(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any),
     onNewMessageSent: publicProcedure
       .input(getMessagesForRoomRequestDtoSchema)
-      .output(chatMessageDtoSchema)
-      .subscription(async () => "PLACEHOLDER_DO_NOT_REMOVE" as any)
+      .subscription(async () => "PLACEHOLDER_DO_NOT_REMOVE" as unknown as Awaited<ReturnType<ChatRouter["onNewMessageSent"]>>)
     })
 });
 

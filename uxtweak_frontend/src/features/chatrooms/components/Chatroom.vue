@@ -7,12 +7,15 @@ import { useSendMessageToRoom } from '@/features/chatrooms/api/useSendMessageToC
 import { formatDate } from '@/features/chatrooms/utils/formatDate';
 import ChatroomSkeleton from '@/features/chatrooms/components/skeletons/ChatroomSkeleton.vue';
 import ChatroomMessagesLoadingError from '@/features/chatrooms/components/errors/ChatroomMessagesLoadingError.vue';
+import { useSubscribeToChatroom } from '@/features/chatrooms/api/useSubscribeToChatroom';
 
 const route = useRoute('/room/[chatroomId]');
 const chatroomId = route.params.chatroomId;
 const { isPending, isError, data: messages } = useGetRecentMessagesForRoom(chatroomId);
 const { nickname } = useNickname();
 const { mutateAsync: sendMessage } = useSendMessageToRoom(chatroomId);
+
+useSubscribeToChatroom(chatroomId);
 
 const message = ref('');
 

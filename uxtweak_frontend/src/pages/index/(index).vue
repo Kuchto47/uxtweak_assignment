@@ -6,6 +6,7 @@
         outlined
         v-model="nickname"
         placeholder="Enter your nickname"
+        hint="at least 3 characters are needed"
         style="margin-bottom: 100px"
       />
 
@@ -27,13 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
+import { useNickname } from '@/features/chatrooms/useNickname';
 import ChatroomsSkeleton from '../../features/chatrooms/ChatroomsSkeleton.vue';
 import ChatroomsLoadingError from '../../features/chatrooms/ChatroomsLoadingError.vue';
 import ChatroomItem from '../../features/chatrooms/ChatroomItem.vue';
 
 const { isError, isPending } = useGetChatRooms();
-
-const nickname = ref('');
+const { nickname } = useNickname();
 </script>

@@ -12,28 +12,11 @@
       <div class="text-h6 q-mb-sm">Chatrooms available:</div>
 
       <div v-if="isPending">
-        <q-list bordered separator rounded>
-          <q-item v-for="n in 3" :key="n">
-            <q-item-section>
-              <q-item-label>
-                <q-skeleton type="text" width="60%" />
-              </q-item-label>
-            </q-item-section>
-
-            <q-item-section side>
-              <q-skeleton type="QBtn" />
-            </q-item-section>
-          </q-item>
-        </q-list>
+        <ChatroomsSkeleton />
       </div>
 
       <div v-else-if="isError">
-        <q-banner class="bg-negative text-white rounded-borders">
-          <template v-slot:avatar>
-            <q-icon name="error" color="white" />
-          </template>
-          Failed to load chatrooms. Please try again later.
-        </q-banner>
+        <ChatroomsLoadingError />
       </div>
 
       <q-list v-else bordered separator rounded>
@@ -58,6 +41,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
+import ChatroomsSkeleton from '../../features/chatrooms/ChatroomsSkeleton.vue';
+import ChatroomsLoadingError from '../../features/chatrooms/ChatroomsLoadingError.vue';
 
 const { isError, isPending, data: chatrooms } = useGetChatRooms();
 

@@ -21,7 +21,7 @@
       </div>
 
       <q-list v-else bordered separator rounded>
-        <ChatroomItem />
+        <ChatroomListItem />
       </q-list>
     </div>
   </q-page>
@@ -30,9 +30,9 @@
 <script setup lang="ts">
 import { useGetChatRooms } from '@/features/chatrooms/api/useGetChatRooms';
 import { useNickname } from '@/features/chatrooms/utils/useNickname';
-import ChatroomsListSkeleton from '../../features/chatrooms/components/ChatroomsListSkeleton.vue';
-import ChatroomsLoadingError from '../../features/chatrooms/components/ChatroomsLoadingError.vue';
-import ChatroomItem from '../../features/chatrooms/components/ChatroomItem.vue';
+import ChatroomsListSkeleton from '../../features/chatrooms/components/skeletons/ChatroomsListSkeleton.vue';
+import ChatroomsLoadingError from '../../features/chatrooms/components/errors/ChatroomsLoadingError.vue';
+import ChatroomListItem from '../../features/chatrooms/components/ChatroomListItem.vue';
 
 const { isError, isPending } = useGetChatRooms();
 const { nickname } = useNickname();

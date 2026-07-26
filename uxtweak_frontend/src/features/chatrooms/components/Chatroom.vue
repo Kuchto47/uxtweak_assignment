@@ -1,30 +1,22 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { ref } from 'vue';
 import { useGetRecentMessagesForRoom } from '@/features/chatrooms/api/useGetRecentMessagesForRoom';
 import { useNickname } from '@/features/chatrooms/utils/useNickname';
-import { useSendMessageToRoom } from '@/features/chatrooms/api/useSendMessageToChatRoom';
 import { formatDate } from '@/features/chatrooms/utils/formatDate';
 import ChatroomSkeleton from '@/features/chatrooms/components/skeletons/ChatroomSkeleton.vue';
 import ChatroomMessagesLoadingError from '@/features/chatrooms/components/errors/ChatroomMessagesLoadingError.vue';
 import { useSubscribeToChatroom } from '@/features/chatrooms/api/useSubscribeToChatroom';
 import { useScrollContainer } from '@/features/chatrooms/utils/useScrollContainer';
+import MessageInput from '@/features/chatrooms/components/MessageInput.vue';
 
 const route = useRoute('/room/[chatroomId]');
 const chatroomId = route.params.chatroomId;
 const { isPending, isError, data: messages } = useGetRecentMessagesForRoom(chatroomId);
 const { nickname } = useNickname();
-const { mutateAsync: sendMessage } = useSendMessageToRoom(chatroomId);
 
 useSubscribeToChatroom(chatroomId);
 
 const { scrollContainer } = useScrollContainer(messages);
-
-const message = ref('');
-
-const handleSendMessage = async () => {
-  await sendMessage(message);
-};
 </script>
 
 <template>
@@ -50,25 +42,5 @@ const handleSendMessage = async () => {
       />
     </template>
   </div>
-  <div class="q-px-md">
-    <q-input
-      v-model="message"
-      placeholder="Type a message"
-      dense
-      outlined
-      @keyup.enter="handleSendMessage"
-    >
-      <template v-slot:append>
-        <q-btn
-          round
-          dense
-          flat
-          :text-color="message.length ? 'primary' : 'grey'"
-          icon="send"
-          :disabled="!message.length"
-          @click="handleSendMessage"
-        />
-      </template>
-    </q-input>
-  </div>
+  <MessageInput :chatroom-id="chatroomId" />
 </template>

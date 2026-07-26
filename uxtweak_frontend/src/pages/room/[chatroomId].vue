@@ -26,10 +26,11 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import { useGetRecentMessagesForRoom } from '@/features/chatrooms/useGetRecentMessagesForRoom';
 
 const route = useRoute('/room/[chatroomId]');
-const _chatroomId = computed(() => route.params.chatroomId);
+const { isPending: _, isError: __, data: _messages } = useGetRecentMessagesForRoom(route.params.chatroomId);
 
 const message = ref('');
 </script>

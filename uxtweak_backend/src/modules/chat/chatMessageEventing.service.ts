@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ChatMessageDtoType } from './model/dto/chatMessage.dto.schema';
 import { EventEmitter, on } from 'events';
-import { tracked } from '@trpc/server';
 
 type ChatRoomId = string;
 type ChatMessageEvents = {
@@ -21,8 +20,7 @@ export class ChatMessageEventingService {
     const iterable = on(this.eventEmitter, eventName, { signal });
 
     for await (const [message] of iterable) {
-      const typedMessage = message as ChatMessageDtoType;
-      yield tracked(String(typedMessage.id), typedMessage);
+      yield message;
     }
   }
 }

@@ -30,9 +30,9 @@
 <script setup lang="ts">
 import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
 import { useNickname } from '@/features/chatrooms/useNickname';
-import ChatroomsSkeleton from '../../features/chatrooms/ChatroomsSkeleton.vue';
-import ChatroomsLoadingError from '../../features/chatrooms/ChatroomsLoadingError.vue';
-import ChatroomItem from '../../features/chatrooms/ChatroomItem.vue';
+import ChatroomsSkeleton from '../../features/chatrooms/components/ChatroomsSkeleton.vue';
+import ChatroomsLoadingError from '../../features/chatrooms/components/ChatroomsLoadingError.vue';
+import ChatroomItem from '../../features/chatrooms/components/ChatroomItem.vue';
 
 const { isError, isPending } = useGetChatRooms();
 const { nickname } = useNickname();

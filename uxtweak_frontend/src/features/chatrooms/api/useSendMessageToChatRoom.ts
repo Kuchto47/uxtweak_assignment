@@ -1,5 +1,5 @@
 import { mutationOptions, useMutation } from '@tanstack/vue-query';
-import { trpcClient } from '@/trpc/trpc';
+import { trpcClient } from '@/trpc/client';
 import { useNickname } from '@/features/chatrooms/utils/useNickname';
 import { Notify } from 'quasar';
 import { type Ref } from 'vue';

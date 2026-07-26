@@ -1,5 +1,5 @@
 import { queryOptions, useQuery, useQueryClient } from '@tanstack/vue-query';
-import { trpcClient } from '@/trpc/trpc';
+import { trpcClient } from '@/trpc/client';
 
 const GET_CHATROOMS_QUERY_KEY = 'chatrooms';
 

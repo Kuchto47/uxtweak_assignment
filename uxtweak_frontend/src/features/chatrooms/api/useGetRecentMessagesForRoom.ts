@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/vue-query';
-import { trpcClient } from '@/trpc/trpc';
+import { trpcClient } from '@/trpc/client';
 
 const GET_MESSAGES_QUERY_KEY = 'messages';
 

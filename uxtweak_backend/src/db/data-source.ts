@@ -2,8 +2,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
 
-// TODO
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 config();
 
 export const typeOrmConfig: TypeOrmModuleOptions = {

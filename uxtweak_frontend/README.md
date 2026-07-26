@@ -4,7 +4,15 @@
 - **Framework:** [Quasar Framework](https://quasar.dev/) (Vue 3)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Build Tool:** [Vite](https://vitejs.dev/)
-- **Communication:** TODO (tRPC / WebSockets)
+- **Data Fetching & State Management:** [TanStack Query (Vue Query)](https://tanstack.com/query/latest)
+- **API Communication:** [tRPC](https://trpc.io/)
+
+## Environment Variables
+The application requires the following environment variables to be set in a `.env` file in the `uxtweak_frontend` directory. You can use `.env.template` as a starting point.
+
+| Variable | Description                            | Default |
+| :--- |:---------------------------------------| :--- |
+| `VITE_API_URL` | The base URL of the backend API (tRPC) | `http://localhost:3030` |
 
 ## Local Development
 

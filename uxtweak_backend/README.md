@@ -8,7 +8,7 @@
 - **ORM:** [TypeORM](https://typeorm.io/)
 - **Validation:** [Zod](https://zod.dev/)
 
-## Local Development
+## Local Development / Run
 
 ### Prerequisites
 Before running the application, create a local `.env` file based on the template:

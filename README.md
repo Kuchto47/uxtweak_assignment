@@ -11,11 +11,11 @@ The application should:
 
 ## Frontend
 
-All frontend details can be found in the [Frontend README](./uxtweak_frontend/README.md).
+All frontend details including how to run the app locally can be found in the [Frontend README](./uxtweak_frontend/README.md).
 
 ## Backend
 
-All backend details can be found in the [Backend README](./uxtweak_backend/README.md).
+All backend details including how to run the app locally can be found in the [Backend README](./uxtweak_backend/README.md).
 
 ## Next steps
 

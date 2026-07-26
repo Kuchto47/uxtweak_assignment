@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { nextTick, ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useGetRecentMessagesForRoom } from '@/features/chatrooms/api/useGetRecentMessagesForRoom';
 import { useNickname } from '@/features/chatrooms/utils/useNickname';
 import { useSendMessageToRoom } from '@/features/chatrooms/api/useSendMessageToChatRoom';
@@ -8,6 +8,7 @@ import { formatDate } from '@/features/chatrooms/utils/formatDate';
 import ChatroomSkeleton from '@/features/chatrooms/components/skeletons/ChatroomSkeleton.vue';
 import ChatroomMessagesLoadingError from '@/features/chatrooms/components/errors/ChatroomMessagesLoadingError.vue';
 import { useSubscribeToChatroom } from '@/features/chatrooms/api/useSubscribeToChatroom';
+import { useScrollContainer } from '@/features/chatrooms/utils/useScrollContainer';
 
 const route = useRoute('/room/[chatroomId]');
 const chatroomId = route.params.chatroomId;
@@ -17,28 +18,13 @@ const { mutateAsync: sendMessage } = useSendMessageToRoom(chatroomId);
 
 useSubscribeToChatroom(chatroomId);
 
+const { scrollContainer } = useScrollContainer(messages);
+
 const message = ref('');
 
 const handleSendMessage = async () => {
   await sendMessage(message);
 };
-
-const scrollContainer = ref<HTMLElement | null>(null);
-
-const scrollToBottom = async () => {
-  await nextTick();
-  if (scrollContainer.value) {
-    scrollContainer.value.scrollTop = scrollContainer.value.scrollHeight;
-  }
-};
-
-watch(
-  messages,
-  () => {
-    void scrollToBottom();
-  },
-  { immediate: true },
-);
 </script>
 
 <template>

@@ -7,6 +7,7 @@ export const getChatRoomsQueryOptions = () => {
   return queryOptions({
     queryKey: [GET_CHATROOMS_QUERY_KEY],
     queryFn: () => trpcClient.chatRouter.getChatRooms.query(),
+    staleTime: 1_000
   })
 }
 

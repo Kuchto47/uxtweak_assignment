@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   test: {
     environment: 'happy-dom',
-    globals: true, // lets you use describe/it/expect without importing them
+    globals: false,
     include: ['src/**/*.spec.{js,ts}', 'src/**/__tests__/**/*.spec.{js,ts}'],
     setupFiles: ['vitest.setup.ts'],
   },

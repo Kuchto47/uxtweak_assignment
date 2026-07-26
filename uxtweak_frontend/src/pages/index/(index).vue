@@ -13,7 +13,7 @@
       <div class="text-h6 q-mb-sm">Chatrooms available:</div>
 
       <div v-if="isPending">
-        <ChatroomsSkeleton />
+        <ChatroomsListSkeleton />
       </div>
 
       <div v-else-if="isError">
@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { useGetChatRooms } from '@/features/chatrooms/useGetChatRooms';
 import { useNickname } from '@/features/chatrooms/useNickname';
-import ChatroomsSkeleton from '../../features/chatrooms/components/ChatroomsSkeleton.vue';
+import ChatroomsListSkeleton from '../../features/chatrooms/components/ChatroomsListSkeleton.vue';
 import ChatroomsLoadingError from '../../features/chatrooms/components/ChatroomsLoadingError.vue';
 import ChatroomItem from '../../features/chatrooms/components/ChatroomItem.vue';
 

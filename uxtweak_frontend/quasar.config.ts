@@ -2,6 +2,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app';
+import 'dotenv/config';
 
 export default defineConfig((/* ctx */) => {
   return {
@@ -52,7 +53,9 @@ export default defineConfig((/* ctx */) => {
 
       // publicPath: '/',
       // define: {},
-      // defineEnv: {}
+      defineEnv: {
+        VITE_API_URL: process.env.VITE_API_URL,
+      },
       // ignorePublicFolder: true,
       // minify: false,
       // distDir

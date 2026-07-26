@@ -12,7 +12,9 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "typecheck": "vue-tsc --noEmit",
-    "postinstall": "quasar prepare --silent"
+    "postinstall": "quasar prepare --silent",
+    "test:unit": "vitest",
+    "test:unit:ci": "vitest run"
   },
   "dependencies": {
     "@quasar/extras": "2.0.2",
@@ -26,16 +28,20 @@
     "@eslint/js": "9.39.5",
     "@quasar/app-vite": "3.2.0",
     "@types/node": "22.20.1",
+    "@vitejs/plugin-vue": "6.0.8",
     "@vue/eslint-config-prettier": "10.2.0",
     "@vue/eslint-config-typescript": "14.9.0",
+    "@vue/test-utils": "2.4.11",
     "autoprefixer": "10.5.4",
     "eslint": "9.39.5",
     "eslint-plugin-vue": "10.10.0",
     "globals": "17.7.0",
+    "happy-dom": "20.11.1",
     "postcss": "8.5.22",
     "prettier": "3.9.6",
     "typescript": "6.0.3",
     "vite-plugin-checker": "0.12.0",
+    "vitest": "4.1.10",
     "vue-eslint-parser": "10.4.1",
     "vue-tsc": "3.3.8"
   },

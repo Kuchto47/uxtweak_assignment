@@ -5,7 +5,10 @@
 
       <q-space />
 
-      <div v-if="activeChatroom">
+      <div
+        v-if="activeChatroom"
+        class="absolute-center"
+      >
         {{ activeChatroom }}
       </div>
 

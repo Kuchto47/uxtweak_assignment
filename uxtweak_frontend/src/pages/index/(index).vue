@@ -43,7 +43,11 @@
           </q-item-section>
 
           <q-item-section side>
-            <q-btn color="primary" label="Join" />
+            <q-btn
+              color="primary"
+              label="Join"
+              :to="`/room/${room.id}`"
+            />
           </q-item-section>
         </q-item>
       </q-list>

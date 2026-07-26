@@ -52,6 +52,13 @@ declare module 'vue-router/auto-routes' {
       { path: ParamValue<false> },
       | never
     >,
+    '/room/[chatroomId]': RouteRecordInfo<
+      '/room/[chatroomId]',
+      '/room/:chatroomId',
+      { chatroomId: ParamValue<true> },
+      { chatroomId: ParamValue<false> },
+      | never
+    >,
   }
 
   /**
@@ -89,6 +96,14 @@ declare module 'vue-router/auto-routes' {
         | never
       pathParamNames:
         | 'path'
+    }
+    'src/pages/room/[chatroomId].vue': {
+      routes:
+        | '/room/[chatroomId]'
+      views:
+        | never
+      pathParamNames:
+        | 'chatroomId'
     }
   }
 

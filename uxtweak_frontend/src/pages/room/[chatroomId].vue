@@ -7,6 +7,7 @@
         maxWidth: '1000px',
         minWidth: '300px',
         paddingBottom: '40px',
+        maxHeight: 'calc(100vh - 50px)',
       }"
     >
       <Chatroom />

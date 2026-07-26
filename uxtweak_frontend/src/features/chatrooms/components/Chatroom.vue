@@ -74,6 +74,7 @@ watch(
           round
           dense
           flat
+          :text-color="message.length ? 'primary' : 'grey'"
           icon="send"
           :disabled="!message.length"
           @click="handleSendMessage"

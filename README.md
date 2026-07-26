@@ -16,3 +16,13 @@ All frontend details can be found in the [Frontend README](./uxtweak_frontend/RE
 ## Backend
 
 All backend details can be found in the [Backend README](./uxtweak_backend/README.md).
+
+## Next steps
+
+- Upgrade to TypeScript 6 and subsequently TypeScript 7 on both projects.
+- Upgrade to Zod 4 on backend (currently blocked by a tRPC subdependency).
+- Implement a more sleek UI.
+- Add authentication.
+- Implement Chatrooms creation.
+- Add chatroom share / invite buttons.
+- And more...
